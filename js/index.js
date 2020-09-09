@@ -1,0 +1,192 @@
+
+$(document).ready(function() {
+    
+    // header
+
+    let marker = document.querySelector(".marker");
+    let items = document.querySelectorAll("header ul li a");
+
+    function changeIndicator(e) {
+        marker.style.left = e.offsetLeft - 8 + "px";
+        marker.style.width = (e.offsetWidth + 18) + "px";
+    }
+
+    changeIndicator(items[0]);
+
+    items.forEach(a => {
+        a.addEventListener('click', (e) => changeIndicator(e.target));
+        
+    });
+
+    // get json Data
+    let projects = [];
+    $.getJSON("data.json", function(data) {
+        $.each(data, function(key, value) {
+            projects.push(value);
+        });
+
+        console.log(projects);
+    });
+
+    // galery box
+
+    let counter = 0;
+    let box = $(".gallery .box");
+    let boxElm = $(".gallery .box span");
+    let projectDesc = $(".project-desc");
+    
+    function rotateBox(val) {
+        counter += val;
+        let idx = 8 - (counter % 8) - 1;
+        if(counter < 0) {
+            idx = Math.abs(counter) % 8 - 1;
+            if(idx == -1) idx = 7;
+        }
+        //console.log(idx);
+
+        box.css("transform", "rotateY(" + (counter * 45) + "deg)");
+        $(boxElm.get(idx)).find("img").css({"opacity" : 1, "transform": "scale(1.1)", "box-shadow": "0 0 1px #e8b544,0 0 2px #e8b544,0 0 3px #e8b544,0 0 4px #e8b544"});
+        $(boxElm.get(idx)).siblings().find("img").removeAttr("style");
+        projectDesc.find("h2").text(projects[idx].name);
+        projectDesc.find("p").text(projects[idx]["s-desc"]);
+    }
+
+    $(".leftArrow").click(function() {
+        rotateBox(1);    
+    });
+
+    $(".rightArrow").click(function() {
+        rotateBox(-1);    
+    });
+   
+    let gsapTimeline = gsap.timeline({paused: true})
+                        .to(".box", {duration:0.5, opacity:0, visibility:"hidden"})
+                        .to(".leftArrow", {duration: 0.5, x: -100, ease:Back.easeIn}, "<0.5")
+                        .to(".rightArrow", {duration: 0.5, x: 100, ease:Back.easeIn}, "<")
+                        .to(".project-desc h2", {duration: 1, opacity: 0}, "<")
+                        .to(".project-desc p", {duration: 1, opacity: 0}, "<")
+                        .to(".project > h1", {duration: 1, opacity: 0}, "<")
+                        .to(".light-parent", {duration: 1, x: 220})
+                        .to(".project-detail", {duration: 1, opacity: 1, visibility:"visible", scale:1}, "<")
+                        .to(".btn-back", {duration: 0.5, opacity: 1,  bottom:"50px"}, "<");
+
+    
+    $(".gallery .box span").find("img").click(function() {
+        console.log( $("project-detail-desc").find("h2"));
+        //box.fadeOut();
+        gsapTimeline.play();
+                
+        
+        let idx = 8 - (counter % 8) - 1;
+        if(counter < 0) {
+            idx = Math.abs(counter) % 8 - 1;
+            if(idx == -1) idx = 7;
+        }
+        console.log((projects[idx]["name"]));
+        console.log(projects[idx]["image"]);
+        
+        
+        $(".project-detail").find("img").attr("src", "images/" + projects[idx]["image"]);
+        $(".project-detail-desc").find("h2").text(projects[idx]["name"]);
+        $(".project-detail-desc").find("p")[0].innerText = projects[idx]["l-desc"];
+        $(".project-detail-desc").find("p")[1].innerText = projects[idx]["year"];
+        if(idx != 7) {
+            $(".project-detail-desc").append("<a class='btn-code' href='#'><i class='fa fa-code' aria-hidden='true'></i>&nbsp; View code</a>");
+        }
+    });
+
+    $(".btn-back").click(function() {
+        $("a.btn-code").remove();
+        gsapTimeline.reverse();
+    });
+
+
+    // wheel
+    let wheel = $(".wheel");
+    let word1 = $(".wheel .word1");
+    const word2 = $(".wheel .word2");
+    const word3 = $(".wheel .word3");
+    const word4 = $(".wheel .word4");
+    const word5 = $(".wheel .word5");
+    const word6 = $(".wheel .word6");
+    const word7 = $(".wheel .word7");
+    const word8 = $(".wheel .word8");
+    const word9 = $(".wheel .word9");
+    const word10 = $(".wheel .word10");
+    const word11 = $(".wheel .word11");
+    const word12 = $(".wheel .word12");
+    const word13 = $(".wheel .word13");
+    const word14 = $(".wheel .word14");
+    const word15 = $(".wheel .word15");
+    const word16 = $(".wheel .word16");
+
+    const spinDuration = 2;
+
+    function spinTheWheel(numOfTimes, obj, opacities) {
+        let initialPos = parseInt(obj.attr("y"));
+        let timeline = gsap.timeline();
+        for(let i = 0; i < numOfTimes; i++) {
+            timeline.to(obj, 1, {
+                opacity: opacities[i],
+                attr: {y: "-=60"},
+                ease: Linear.easeNone
+            });
+        }
+        return timeline;
+    }
+
+    let tl1 = spinTheWheel(1, word1, [0]);
+    let tl2 = spinTheWheel(2, word2, [0.2, 0]);
+    let tl3 = spinTheWheel(3, word3, [0.5, 0.2, 0]);
+    let tl4 = spinTheWheel(4, word4, [1, 0.5, 0.2, 0]);
+    let tl5 = spinTheWheel(5, word5, [0.5, 1, 0.5, 0.2, 0]);
+    let tl6 = spinTheWheel(6, word6, [0.2, 0.5, 1, 0.5, 0.2, 0]);
+    let tl7 = spinTheWheel(7, word7, [0, 0.2, 0.5, 1, 0.5, 0.2, 0]);
+    let tl8 = spinTheWheel(8, word8, [0, 0, 0.2, 0.5, 1, 0.5, 0.2, 0]);
+    let tl9 = spinTheWheel(9, word9, [0, 0, 0, 0.2, 0.5, 1, 0.5, 0.2, 0]);
+    let tl10 = spinTheWheel(10, word10, [0, 0, 0, 0, 0.2, 0.5, 1, 0.5, 0.2, 0]);
+    let tl11 = spinTheWheel(11, word11, [0, 0, 0, 0, 0, 0.2, 0.5, 1, 0.5, 0.2, 0]);
+    let tl12 = spinTheWheel(11, word12, [0, 0, 0, 0, 0, 0, 0.2, 0.5, 1, 0.5, 0.2]);
+    let tl13 = spinTheWheel(11, word13, [0, 0, 0, 0, 0, 0, 0, 0.2, 0.5, 1, 0.5]);
+    let tl14 = spinTheWheel(11, word14, [0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.5, 1]);
+    let tl15 = spinTheWheel(11, word15, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.5]);
+    let tl16 = spinTheWheel(11, word16, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2]);
+
+
+    let masterTimeline = new TimelineMax({repeat: 20});
+    masterTimeline.add(tl1, 0);
+    masterTimeline.add(tl2, 0);
+    masterTimeline.add(tl3, 0);
+    masterTimeline.add(tl4, 0);
+    masterTimeline.add(tl5, 0);
+    masterTimeline.add(tl6, 0);
+    masterTimeline.add(tl7, 0);
+    masterTimeline.add(tl8, 0);
+    masterTimeline.add(tl9, 0);
+    masterTimeline.add(tl10, 0);
+    masterTimeline.add(tl11, 0);
+    masterTimeline.add(tl12, 0);
+    masterTimeline.add(tl13, 0);
+    masterTimeline.add(tl14, 0);
+    masterTimeline.add(tl15, 0);
+    masterTimeline.add(tl16, 0);
+    masterTimeline.pause();
+    // wheel.mouseenter(function() {
+    //     masterTimeline.pause();
+    // }).mouseleave(function() {
+    //     masterTimeline.play();
+    // });
+    
+    
+        
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5f58900bf0e7167d000eb404/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+
+});
