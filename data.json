@@ -2,57 +2,65 @@
     "7": {
         "name": "On Progress",
         "s-desc": "Not available. Im currently working on this project",
-        "l-desc" : "Not available. Im currently working on this project",
+        "l-desc" : "Im currently working on this project",
         "year" : "202x",
-        "image" : "loading.jpg"
+        "image" : "loading.jpg",
+        "url" : "#"
     },
     "6": {
         "name": "Irental",
         "s-desc": "Desktop based app for car rental management system",
         "l-desc" : "Irental is a Desktop-based car rental software designed to automate the management of your car rental business. The software is built with electron js and react js, and has some features that can help a car rental owner to manage their cars and clients much easier.",
         "year" : "Copyright 2018",
-        "image" : "irental.png"
+        "image" : "irental.png",
+        "url" : "#"
     },
     "5": {
         "name": "RESTful API",
         "s-desc": "rich-feature RESTful API built with laravel as back-end",
         "l-desc" : "Features include resource CRUD operation, error and exception handling, user privilege and role management, email verification, sorting, filtering, transforming, pagination, validation, caching, oauth2 authentication, rate limiting, and more.",
         "year" : "Copyright 2020",
-        "image" : "restapi.png"
+        "image" : "restapi.png",
+        "url" : "https://github.com/william1099/laravel-restfulapi-microservice"
     },
     "4": {
         "name": "Kids Game",
         "s-desc": "A web-based kids game with story",
         "l-desc" : "Online learning game for kids with fun story, nice background music and effect. It is a web-based app and programmed with javascript and Phaser js library.",
         "year" : "Copyright 2017",
-        "image" : "kidsgame.png"
+        "image" : "kidsgame.png",
+        "url" : "https://github.com/william1099/kidsGame-phaserJS"
     },
     "3": {
         "name": "JagoanCuaca",
         "s-desc": "Show timezone, capital city and country's fact",
         "l-desc" : "A web-based informative country's trivia ranging from timezone, capital city, fun fact, etc. This website is built with angular Js and some open access API's including openweather API, timezone API, wikipedia API.",
         "year" : "Copyright 2017",
-        "image" : "weather.png"
+        "image" : "weather.png",
+        "url" : "https://github.com/william1099/Weather-angularJS"
     },
     "2": {
         "name": "Amajon",
         "s-desc": "a Minimalist ecommerce website",
         "l-desc" : "A web-based static ecommerce website. Features include user login, session, shopping cart",
         "year" : "Copyright 2016",
-        "image" : "amajon.png"
+        "image" : "amajon.png",
+        "url" : "https://github.com/william1099/BasicEcommerce"
     },
     "1": {
         "name": "Veil",
         "s-desc": "A mobile auction app",
         "l-desc" : "An app designed to make auction procedure easier. It is built with ionic, typescript, firebase, angular 4, etc. Set up your auction and become online bidders, bid in real time, real time chat.",
         "year" : "Copyright 2017",
-        "image" : "veil.png"
+        "image" : "veil.png",
+        "url" : "https://github.com/william1099/veil"
     },
     "0": {
         "name": "PakPol",
         "s-desc": "A mobile police app",
         "l-desc" : "An app designed to make filing report easier. Features include Find police stations nearby, nearest police station, file police reports online, get up-to-date news, live-incidents, and police upcoming agendas, exchange scammer informations.",
         "year" : "Copyright 2018",
-        "image" : "policeapp2.png"
+        "image" : "policeapp2.png",
+        "url" : "https://github.com/william1099/PoliceAndroidApp"
     }
 }

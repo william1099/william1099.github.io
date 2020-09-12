@@ -18,6 +18,7 @@
 
 html {
     height: 100%;
+    scroll-behavior: smooth;
 }
 body {
     min-height: 100%;   
@@ -335,8 +336,8 @@ header ul li a:hover {
 }
 
 .about > h1 {
-    text-align: center;
     color: #e8b544;
+    text-align: center;
 }
 
 .about .wrapper-about {
@@ -409,6 +410,13 @@ header ul li a:hover {
                 0 0 7px #e8b544;
 }
 
+.act {
+    transform: rotate(-10deg);
+}
+
+.act-img {
+    transform: rotateY(-135deg);
+}
 .wrapper-about .left .card:hover {
     transform: rotate(-10deg);
 }

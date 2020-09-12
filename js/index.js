@@ -70,7 +70,7 @@ $(document).ready(function() {
                         .to(".project-detail", {duration: 1, opacity: 1, visibility:"visible", scale:1}, "<")
                         .to(".btn-back", {duration: 0.5, opacity: 1,  bottom:"50px"}, "<");
 
-    
+
     $(".gallery .box span").find("img").click(function() {
         console.log( $("project-detail-desc").find("h2"));
         //box.fadeOut();
@@ -91,7 +91,7 @@ $(document).ready(function() {
         $(".project-detail-desc").find("p")[0].innerText = projects[idx]["l-desc"];
         $(".project-detail-desc").find("p")[1].innerText = projects[idx]["year"];
         if(idx != 7) {
-            $(".project-detail-desc").append("<a class='btn-code' href='#'><i class='fa fa-code' aria-hidden='true'></i>&nbsp; View code</a>");
+            $(".project-detail-desc").append("<a class='btn-code' target='_blank' href='" +  projects[idx]["url"] + "'><i class='fa fa-code' aria-hidden='true'></i>&nbsp; View code</a>");
         }
     });
 
@@ -171,22 +171,117 @@ $(document).ready(function() {
     masterTimeline.add(tl15, 0);
     masterTimeline.add(tl16, 0);
     masterTimeline.pause();
-    // wheel.mouseenter(function() {
-    //     masterTimeline.pause();
-    // }).mouseleave(function() {
-    //     masterTimeline.play();
-    // });
+    wheel.mouseenter(function() {
+        masterTimeline.pause();
+    }).mouseleave(function() {
+        masterTimeline.play();
+    });
     
-    
+    $(".skill-down").click(function() {
+        window.location.href = "#contact";
+    });
         
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    var Tawk_API=Tawk_API||{};
+    // Tawk_API.onLoad = function() {
+    //     console.log("hide done");
+    //     $("#tawkchat-minified-box").css("display", "none");
+    // };
+    
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
     s1.async=true;
     s1.src='https://embed.tawk.to/5f58900bf0e7167d000eb404/default';
     s1.charset='UTF-8';
     s1.setAttribute('crossorigin','*');
+    s1.setAttribute('id','tawkto');
     s0.parentNode.insertBefore(s1,s0);
+    
+    // setTimeout(function() {
+    //     console.log(.attr("id"));
+    //     console.log("done");
+    // }, 10000);
     })();
 
+    
+
+    gsap.registerPlugin(ScrollTrigger);
+    
+
+    let gsapHero = gsap.timeline()
+                    .from(".hero .greeting", {x: -80, opacity:0, duration: 1})
+                    .from(".hero .name", {x: 80, opacity:0, duration: 1}, "<0.5")
+                    .from(".hero .desc p", {y: 80, opacity:0, duration: 1}, "<")
+                    .from(".hero .desc a", {y: 80, opacity:0, duration: 1}, "<")
+                    .from(".hero .editor", {x: 80, opacity:0, duration: 1}, "<");
+
+    let gsapAbout = gsap.timeline({scrollTrigger : {
+        trigger : ".about",
+        toggleActions : "restart none none none",
+        start: "top center"
+    }})
+    .from(".about .title", {y: -80, opacity: 0, duration: 1})
+    .from(".wrapper-about", {y: -80, opacity: 0, duration: 1}, "<")
+    .from(".wrapper-about .right p", {x: 80, opacity: 0, duration: 1}, "<");
+
+    let gsapProject = gsap.timeline({scrollTrigger : {
+        trigger : ".project",
+        toggleActions : "restart none none none",
+        start: "top center"
+    }})
+    .from(".project .gallery", {y: -80, opacity: 0, duration: 1});
+
+    
+    let gsapSkill = gsap.timeline({scrollTrigger : {
+        trigger : ".skill",
+        toggleActions : "restart none none none",
+        start: "top center"
+    }})
+    .from(".skill .container", {y: -180, opacity: 0, duration: 1});
+
+    
+
+    let gsapContact = gsap.timeline({scrollTrigger : {
+        trigger : ".contact",
+        toggleActions : "restart none none none",
+        start: "top center"
+    }})
+    .from(".contact .container", {y: -180, opacity: 0, duration: 1});
+                    
+    
+    
+    $(window).on('scroll', function() {
+        let bool = 1;
+
+        
+        
+        if ( $(window).scrollTop() >= $('.skill').offset().top - ($(window).height() / 2)) {
+            
+            if(bool == 1) { masterTimeline.play(); bool = 0; }
+
+
+        } 
+
+        if ( $(window).scrollTop() >= $('.about').offset().top + 200 - ($(window).height() / 2) && $(window).scrollTop() <= $('.about').offset().top + 300 - ($(window).height() / 2)) {
+            
+            $(".wrapper-about .left .card").addClass("act");
+            $(".wrapper-about .left .card img").addClass("act-img");
+        } else {
+            $(".wrapper-about .left .card").removeClass("act");
+            $(".wrapper-about .left .card img").removeClass("act-img");
+        }
+        
+        if ( $(window).scrollTop() >= $('.contact').offset().top  - ($(window).height() / 2)) {
+            
+            // if($("#tawkchat-minified-box")) {
+            //     $("#tawkchat-minified-box").hide();
+            // }
+
+        }
+      });
+
+      Tawk_API.hideWidget();
+
+
 });
+
+
