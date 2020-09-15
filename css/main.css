@@ -450,7 +450,7 @@ header ul li a:hover {
     background-color: #e8b544;
     width: 0;
     position: relative;
-    animation: strokeMove 5s infinite;
+    animation: strokeMove 5s forwards;
 }
 
 .right .stroke::after {
@@ -1017,6 +1017,7 @@ footer p {
     
 }
 
+
 .spinner-wrapper {
 	position: fixed;
 	z-index: 999999;
@@ -1073,3 +1074,5 @@ footer p {
 		transform: scale(1.0);
 	}
 }
+
+
