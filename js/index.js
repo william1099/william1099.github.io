@@ -191,29 +191,6 @@ $(document).ready(function() {
     $(".skill-down").click(function() {
         window.location.href = "#contact";
     });
-        
-    var Tawk_API=Tawk_API||{};
-    // Tawk_API.onLoad = function() {
-    //     console.log("hide done");
-    //     $("#tawkchat-minified-box").css("display", "none");
-    // };
-    
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/5f58900bf0e7167d000eb404/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s1.setAttribute('id','tawkto');
-    s0.parentNode.insertBefore(s1,s0);
-    
-    // setTimeout(function() {
-    //     console.log(.attr("id"));
-    //     console.log("done");
-    // }, 10000);
-    })();
-
-    
 
     gsap.registerPlugin(ScrollTrigger);
     
@@ -250,14 +227,15 @@ $(document).ready(function() {
     .from(".skill .container", {y: -180, opacity: 0, duration: 1});
 
     
-
-    let gsapContact = gsap.timeline({scrollTrigger : {
-        trigger : ".contact",
-        toggleActions : "restart none none none",
-        start: "top center"
-    }})
-    .from(".contact .container", {y: -180, opacity: 0, duration: 1});
-                    
+     
+    if ($(window).width() > 480) { 
+        let gsapContact = gsap.timeline({scrollTrigger : {
+            trigger : ".contact",
+            toggleActions : "restart none none none",
+            start: "top center"
+        }})
+        .from(".contact .container", {y: -180, opacity: 0, duration: 1});
+    }
     
     
     $(window).on('scroll', function() {
@@ -289,8 +267,6 @@ $(document).ready(function() {
 
         }
       });
-
-      Tawk_API.hideWidget();
 
 
 });
